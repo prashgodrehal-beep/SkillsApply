@@ -56,15 +56,13 @@ Desired outcome: ${desiredOutcome}`
     const response: CoachingResponse = JSON.parse(clean)
 
     // Log session (non-blocking — ignore errors)
-    db.from('coaching_sessions')
+    void db.from('coaching_sessions')
       .insert({
         situation: situationText,
         what_happened: whatHappened,
         desired_outcome: desiredOutcome,
         ai_response: response,
       })
-      .then(() => {})
-      .catch(() => {})
 
     return NextResponse.json(response)
   } catch (err) {
